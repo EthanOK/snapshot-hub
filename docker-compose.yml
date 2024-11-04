@@ -18,7 +18,7 @@ services:
 
   # Snapshot MySQL instance
   snapshot-mysql:
-    image: mysql:5.7
+    image: mysql/mysql-server:5.7
     container_name: snapshot-mysql
     ports:
       - 3306:3306

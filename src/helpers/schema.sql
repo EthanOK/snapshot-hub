@@ -58,6 +58,9 @@ CREATE TABLE proposals (
   scores_state VARCHAR(24) NOT NULL,
   scores_total DECIMAL(64,30) NOT NULL,
   scores_updated INT(11) NOT NULL,
+  vp_usd decimal(64,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
+  vp_eth decimal(64,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
+  vp_value_by_strategy json NOT NULL,
   votes INT(12) NOT NULL,
   flagged INT NOT NULL DEFAULT 0,
   PRIMARY KEY (id),
@@ -189,4 +192,26 @@ CREATE TABLE options (
   name VARCHAR(100) NOT NULL,
   value VARCHAR(100) NOT NULL,
   PRIMARY KEY (name)
+);
+
+CREATE TABLE messages (
+  mci INT NOT NULL AUTO_INCREMENT,
+  id VARCHAR(66) NOT NULL,
+  ipfs VARCHAR(64) NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  version VARCHAR(6) NOT NULL,
+  timestamp BIGINT NOT NULL,
+  space VARCHAR(100),
+  type VARCHAR(24) NOT NULL,
+  sig VARCHAR(3000) NOT NULL,
+  receipt VARCHAR(256) NOT NULL,
+  PRIMARY KEY (id),
+  INDEX mci (mci),
+  INDEX ipfs (ipfs),
+  INDEX address (address),
+  INDEX version (version),
+  INDEX timestamp (timestamp),
+  INDEX space (space),
+  INDEX type (type),
+  INDEX receipt (receipt)
 );

@@ -58,6 +58,7 @@ export default function initMetrics(app: Express) {
           const operationName = (req.body || req.query)?.operationName;
 
           if (query && operationName) {
+            // TODO:parse the query
             const definition = parse(query).definitions.find(
               // @ts-ignore
               def => def.name?.value === operationName

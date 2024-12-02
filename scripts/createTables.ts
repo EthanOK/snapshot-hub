@@ -21,6 +21,9 @@ async function run() {
 
   console.log('Start test database setup');
 
+  console.info(`- Creating new database: ${dbName}`);
+  await db.queryAsync(`CREATE DATABASE IF NOT EXISTS ${dbName}`);
+
   const schema = fs
     .readFileSync('./src/helpers/schema.sql', 'utf8')
     .replaceAll('CREATE TABLE ', `CREATE TABLE IF NOT EXISTS ${dbName}.`)

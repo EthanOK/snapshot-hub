@@ -30,6 +30,12 @@ export default rateLimit({
   legacyHeaders: false,
   skip: (req, res) => {
     if (!client?.isReady) return true;
+    // TODO: rate limited
+    const apiKey = req.headers['x-api-key'] || req.query.apiKey;
+    let whiteList = ['https://snapshot.osp.org', 'http://localhost:8080'];
+    let apiKeyList = ['osp_snapshot_apiKey'];
+    if (whiteList.includes(req.headers['origin'])) return true;
+    if (apiKeyList.includes(apiKey)) return true;
 
     const keycardData = res.locals.keycardData;
     if (keycardData?.valid && !keycardData.rateLimited) {
